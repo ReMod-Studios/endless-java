@@ -1,5 +1,5 @@
 @file:JvmName("PlatformInterface")
-package com.remodstudios.archskeleton
+package com.remodstudios.endless
 
 import me.shedaniel.architectury.annotations.ExpectPlatform
 

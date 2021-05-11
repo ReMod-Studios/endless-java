@@ -13,7 +13,6 @@ architectury {
 
 loom {
     useFabricMixin = true
-    mixinConfig "lumidep.mixins.json"
 }
 
 repositories {

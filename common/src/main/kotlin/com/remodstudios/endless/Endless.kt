@@ -1,9 +1,9 @@
-package com.remodstudios.archskeleton
+package com.remodstudios.endless
 
 import net.minecraft.util.Identifier
 
-object ArchitecturySkeleton {
-    const val MOD_ID = "archskeleton"
+object Endless {
+    const val MOD_ID = "endless"
 
     fun init() {
         printHelloWorld()

@@ -4,31 +4,30 @@ loaderVersion="[1.12,)"
 license = "Apache-2.0"
 
 [[mods]]
-modId = "archskeleton"
+modId = "endless"
 version = "${version}"
-displayName = "Architectury Skeleton"
+displayName = "Endless"
 authors = "ReMod Studios"
 description = '''
-If you're seeing this, then someone in our team messed up and forgot
-to replace this text. Actually, I'm surprised that this boots up at all - leocth
+An End Expansion aiming to add more wackyness to the End Dimension!
 '''
 #logoFile = ""
 
-[[dependencies.archskeleton]]
+[[dependencies.endless]]
 modId = "forge"
 mandatory = true
 versionRange = "[35,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.archskeleton]]
+[[dependencies.endless]]
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.16.2,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.archskeleton]]
+[[dependencies.endless]]
 modId = "architectury"
 mandatory = true
 versionRange = "[1.1.55,)"

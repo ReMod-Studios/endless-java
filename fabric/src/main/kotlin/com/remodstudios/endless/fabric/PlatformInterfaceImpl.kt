@@ -1,4 +1,4 @@
-package com.remodstudios.archskeleton.fabric
+package com.remodstudios.endless.fabric
 
 @Suppress("unused")
 object PlatformInterfaceImpl {

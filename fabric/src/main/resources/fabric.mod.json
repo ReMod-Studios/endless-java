@@ -1,23 +1,23 @@
 {
   "schemaVersion": 1,
-  "id": "archskeleton",
+  "id": "endless",
   "version": "${version}",
-  "name": "Architectury Skeleton",
-  "description": "If you're seeing this, then someone in our team messed up and forgot to replace this text. Actually, I'm surprised that this boots up at all - leocth",
+  "name": "Endless",
+  "description": "An End Expansion aiming to add more wackyness to the End Dimension!",
   "authors": [
     "ReMod Studios"
   ],
   "license": "Apache-2.0",
-  "icon": "assets/archskeleton/icon.png",
+  "icon": "assets/endless/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [{
       "adapter": "kotlin",
-      "value": "com.remodstudios.archskeleton.fabric.ArchitecturySkeletonFabric"
+      "value": "com.remodstudios.endless.fabric.EndlessFabric"
     }],
     "client": [{
       "adapter": "kotlin",
-      "value": "com.remodstudios.archskeleton.fabric.ArchitecturySkeletonFabricClient"
+      "value": "com.remodstudios.endless.fabric.EndlessFabricClient"
     }]
   },
   "depends": {
