@@ -13,6 +13,7 @@ architectury {
 
 repositories {
     mavenCentral()
+    maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
 }
 
 dependencies {
@@ -32,6 +33,9 @@ dependencies {
         transitive = false
     }
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
+    // mod dependencies
+    modImplementation "software.bernie.geckolib:geckolib-fabric-${rootProject.minecraft_version}:${rootProject.geckolib_version}:dev"
 }
 
 processResources {
