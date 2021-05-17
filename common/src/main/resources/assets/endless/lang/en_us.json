@@ -1,0 +1,32 @@
+{
+    "itemGroup.endless.group": "Endless",
+
+    "item.endless.cobalt_dust": "Cobalt Dust",
+    "item.endless.cobalt_repel": "Cobalt Repel",
+    "item.endless.cobalt_lighter": "Cobalt Lighter",
+    "item.endless.cobalt_dynamite": "Cobalt Dynamite",
+
+    "item.endless.therakium_shard": "Therakium Shard",
+    "item.endless.therakium_metal": "Therakium Metal",
+    "item.endless.therakium_sword": "Therakium Sword",
+    "item.endless.therakium_axe": "Therakium Axe",
+    "item.endless.therakium_pickaxe": "Therakium Pickaxe",
+    "item.endless.therakium_shovel": "Therakium Shovel",
+    "item.endless.therakium_hoe": "Therakium Hoe",
+    "item.endless.therakium_helmet": "Therakium Helmet",
+    "item.endless.therakium_chestplate": "Therakium Chestplate",
+    "item.endless.therakium_leggings": "Therakium Leggings",
+    "item.endless.therakium_boots": "Therakium Boots",
+
+    "block.endless.cobalt_ore": "Cobalt Ore",
+    "block.endless.cobalt_block": "Block of Cobalt",
+    "block.endless.static_charge": "Static Charge Block",
+
+    "block.endless.therakium_ore": "Therakium Ore",
+    "block.endless.therakium_block": "Block of Therakium",
+
+    "block.endless.lunaric_end_stone": "Lunar End Stone",
+    "block.endless.murky_end_stone": "Murky End Stone",
+
+    "block.endless.test_block": "Test Block"
+}
