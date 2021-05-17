@@ -8,7 +8,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
 
 @Mod(Endless.MOD_ID)
-object ArchitecturySkeletonForge {
+object EndlessForge {
     init {
         EventBuses.registerModEventBus(Endless.MOD_ID, MOD_BUS);
         MOD_BUS.addListener(::onClientSetup)
