@@ -6,6 +6,8 @@ import net.minecraft.advancement.criterion.Criteria
 import net.minecraft.item.Item
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.sound.SoundCategory
+import net.minecraft.sound.SoundEvents
 import net.minecraft.util.ActionResult
 
 class CobaltLighterItem(settings: Settings?) : Item(settings) {
@@ -20,6 +22,14 @@ class CobaltLighterItem(settings: Settings?) : Item(settings) {
             return ActionResult.PASS
         val shockPos = blockPos.offset(ctx.side)
         if (StaticChargeBlock.isValidPlace(world, shockPos)) {
+            world.playSound(
+                player,
+                blockPos,
+                SoundEvents.ITEM_FLINTANDSTEEL_USE, // TODO replace with custom sound
+                SoundCategory.BLOCKS,
+                1.0f,
+                RANDOM.nextFloat() * 0.4f + 0.8f
+            )
             world.setBlockState(shockPos, BlockRegistry.STATIC_CHARGE.get().defaultState, 3)
             if (player is ServerPlayerEntity) {
                 Criteria.PLACED_BLOCK.trigger(player as ServerPlayerEntity?, shockPos, ctx.stack)

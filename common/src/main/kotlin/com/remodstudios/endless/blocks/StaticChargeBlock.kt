@@ -20,8 +20,10 @@ import net.minecraft.world.BlockView
 import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
 import net.minecraft.world.WorldView
+import java.util.*
 
 class StaticChargeBlock(settings: Settings): Block(settings) {
+    private val random: Random = Random()
     private val damageSource: DamageSource = ModDamageSource("shock").setUnblockable()
     private val shape: VoxelShape = createCuboidShape(0.0, 0.0, 0.0, 16.0, 1.0, 16.0)
 
@@ -30,14 +32,12 @@ class StaticChargeBlock(settings: Settings): Block(settings) {
             return
         world.setBlockState(blockPos, Blocks.AIR.defaultState, 3)
         world.playSound(
-            blockPos.x.toDouble(),
-            blockPos.y.toDouble(),
-            blockPos.z.toDouble(),
+            null,
+            blockPos,
             SoundEvents.ENTITY_LIGHTNING_BOLT_IMPACT,
             SoundCategory.BLOCKS,
-            1F,
-            1F,
-            true
+            2F,
+            0.8F + random.nextFloat() * 0.2F
         )
         // TODO particle effect
         entity.damage(damageSource, 12F)
