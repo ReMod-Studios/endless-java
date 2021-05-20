@@ -6,8 +6,13 @@ import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.block.ShapeContext
 import net.minecraft.entity.Entity
+import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.damage.DamageSource
+import net.minecraft.entity.effect.StatusEffectInstance
+import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.item.ItemPlacementContext
+import net.minecraft.sound.SoundCategory
+import net.minecraft.sound.SoundEvents
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.util.shape.VoxelShape
@@ -21,11 +26,23 @@ class StaticChargeBlock(settings: Settings): Block(settings) {
     private val shape: VoxelShape = createCuboidShape(0.0, 0.0, 0.0, 16.0, 1.0, 16.0)
 
     override fun onEntityCollision(blockState: BlockState?, world: World?, blockPos: BlockPos?, entity: Entity?) {
-        if (world == null || entity == null || world.isClient())
+        if (world == null || blockPos == null || entity == null || world.isClient())
             return
-        // TODO sounds & effects
-        entity.damage(damageSource, 1f) // TODO balance damage
         world.setBlockState(blockPos, Blocks.AIR.defaultState, 3)
+        world.playSound(
+            blockPos.x.toDouble(),
+            blockPos.y.toDouble(),
+            blockPos.z.toDouble(),
+            SoundEvents.ENTITY_LIGHTNING_BOLT_IMPACT,
+            SoundCategory.BLOCKS,
+            1F,
+            1F,
+            true
+        )
+        // TODO particle effect
+        entity.damage(damageSource, 12F)
+        if (entity is LivingEntity)
+            entity.addStatusEffect(StatusEffectInstance(StatusEffects.BLINDNESS, 100, 5))
     }
 
     override fun getOutlineShape(
