@@ -13,10 +13,10 @@ import net.minecraft.util.registry.Registry
 import java.util.function.Supplier
 
 object ItemRegistry {
-    private val REGISTRY = Endless.REGISTRIES.get(Registry.ITEM_KEY);
+    private val REGISTRY = Endless.REGISTRIES.get(Registry.ITEM_KEY)
 
     private fun register(path: String, supplier: Supplier<Item>): RegistrySupplier<Item> {
-        return REGISTRY.registerSupplied(id(path), supplier);
+        return REGISTRY.registerSupplied(id(path), supplier)
     }
 
     private val CREATIVE_TAB: ItemGroup = CreativeTabs.create(id("group")) { ItemStack(COBALT_LIGHTER.get()) }
@@ -25,8 +25,12 @@ object ItemRegistry {
         return Item.Settings().group(CREATIVE_TAB)
     }
 
-    val TEST_BLOCK = register("test_block") { BlockItem(BlockRegistry.TEST_BLOCK.get(), defaultSettings()) }
-    val COBALT_LIGHTER = register("cobalt_lighter") { CobaltLighterItem(defaultSettings().maxDamage(65)) }
+    val TEST_BLOCK = register("test_block")
+    { BlockItem(BlockRegistry.TEST_BLOCK.get(), defaultSettings()) }
+    val COBALT_LIGHTER = register("cobalt_lighter")
+    { CobaltLighterItem(defaultSettings().maxDamage(65)) }
+    val COBALT_REPEL = register("cobalt_repel")
+    { BlockItem(BlockRegistry.COBALT_REPEL.get(), defaultSettings()) }
 
     fun register() {
         /* clinit */

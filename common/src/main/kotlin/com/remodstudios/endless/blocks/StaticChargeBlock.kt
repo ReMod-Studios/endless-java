@@ -1,13 +1,12 @@
 package com.remodstudios.endless.blocks
 
-import com.remodstudios.endless.ModDamageSource
+import com.remodstudios.endless.Endless
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.block.ShapeContext
 import net.minecraft.entity.Entity
 import net.minecraft.entity.LivingEntity
-import net.minecraft.entity.damage.DamageSource
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
 import net.minecraft.item.ItemPlacementContext
@@ -22,7 +21,6 @@ import net.minecraft.world.WorldAccess
 import net.minecraft.world.WorldView
 
 class StaticChargeBlock(settings: Settings): Block(settings) {
-    private val damageSource: DamageSource = ModDamageSource("shock").setUnblockable()
     private val shape: VoxelShape = createCuboidShape(0.0, 0.0, 0.0, 16.0, 1.0, 16.0)
 
     override fun onEntityCollision(blockState: BlockState?, world: World?, blockPos: BlockPos?, entity: Entity?) {
@@ -38,7 +36,7 @@ class StaticChargeBlock(settings: Settings): Block(settings) {
             0.8F + world.random.nextFloat() * 0.2F
         )
         // TODO particle effect
-        entity.damage(damageSource, 12F)
+        entity.damage(Endless.SHOCK_DAMAGE_SOURCE, 12F)
         if (entity is LivingEntity)
             entity.addStatusEffect(StatusEffectInstance(StatusEffects.BLINDNESS, 100, 5))
     }
