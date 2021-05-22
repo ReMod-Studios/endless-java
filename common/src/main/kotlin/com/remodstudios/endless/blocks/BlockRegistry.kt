@@ -19,9 +19,6 @@ object BlockRegistry {
         return REGISTRY.registerSupplied(id(path), supplier)
     }
 
-//    val TEST_BLOCK = register("test_block")
-//    { Block(Settings.of(Material.STONE, MaterialColor.PURPLE)) }
-
     val COBALT_ORE = register("cobalt_ore")
     {
         Block(Settings.copy(Blocks.END_STONE))
@@ -36,7 +33,7 @@ object BlockRegistry {
     }
     val COBALT_REPEL = register("cobalt_repel")
     {
-        RepelBlock(Settings.of(Material.GLASS, MaterialColor.BLUE).nonOpaque())
+        CobaltRepelBlock(Settings.of(Material.GLASS, MaterialColor.BLUE).nonOpaque())
     }
     val THERAKIUM_ORE = register("therakium_ore")
     {

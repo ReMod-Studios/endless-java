@@ -26,31 +26,28 @@ object ItemRegistry {
         return Item.Settings().group(CREATIVE_TAB)
     }
 
-//    val TEST_BLOCK = register("test_block")
-//    { BlockItem(BlockRegistry.TEST_BLOCK.get(), defaultSettings()) }
-
     val COBALT_DUST = register("cobalt_dust")
     {
         Item(defaultSettings())
     }
     val COBALT_DYNAMITE = register("cobalt_dynamite")
     {
-        Item(defaultSettings())
+        CobaltDynamiteItem(defaultSettings())
     }
     val COBALT_LIGHTER = register("cobalt_lighter")
     {
         CobaltLighterItem(defaultSettings().maxDamage(65))
-    }
-    val COBALT_REPEL = register("cobalt_repel")
-    {
-        BlockItem(BlockRegistry.COBALT_REPEL.get(), defaultSettings())
     }
     val THERAKIUM_SHARD = register("therakium_register")
     {
         Item(defaultSettings())
     }
 
-    // Block Items
+    // region Block Items
+    val COBALT_REPEL = register("cobalt_repel")
+    {
+        BlockItem(BlockRegistry.COBALT_REPEL.get(), defaultSettings())
+    }
     val COBALT_ORE = register("cobalt_ore")
     {
         BlockItem(BlockRegistry.COBALT_ORE.get(), defaultSettings())
@@ -75,6 +72,7 @@ object ItemRegistry {
     {
         BlockItem(BlockRegistry.POLISHED_RHYOLITE.get(), defaultSettings())
     }
+    // endregion
 
     fun register() {
         /* clinit */

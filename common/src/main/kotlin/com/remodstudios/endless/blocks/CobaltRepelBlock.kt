@@ -8,7 +8,7 @@ import net.minecraft.util.shape.VoxelShape
 import net.minecraft.util.shape.VoxelShapes
 import net.minecraft.world.BlockView
 
-class RepelBlock(settings: Settings) : Block(settings) {
+class CobaltRepelBlock(settings: Settings) : Block(settings) {
     private val shape = VoxelShapes.union(
         createCuboidShape(4.0, 0.0, 4.0, 12.0, 8.0, 12.0),  // jar body
         createCuboidShape(7.0, 8.0, 7.0, 9.0, 10.0, 9.0),   // jar neck
