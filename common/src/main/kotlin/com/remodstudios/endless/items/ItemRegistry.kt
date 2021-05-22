@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.util.registry.Registry
 import java.util.function.Supplier
 
+@SuppressWarnings("unused")
 object ItemRegistry {
     private val REGISTRY = Endless.REGISTRIES.get(Registry.ITEM_KEY)
 
@@ -25,12 +26,55 @@ object ItemRegistry {
         return Item.Settings().group(CREATIVE_TAB)
     }
 
-    val TEST_BLOCK = register("test_block")
-    { BlockItem(BlockRegistry.TEST_BLOCK.get(), defaultSettings()) }
+//    val TEST_BLOCK = register("test_block")
+//    { BlockItem(BlockRegistry.TEST_BLOCK.get(), defaultSettings()) }
+
+    val COBALT_DUST = register("cobalt_dust")
+    {
+        Item(defaultSettings())
+    }
+    val COBALT_DYNAMITE = register("cobalt_dynamite")
+    {
+        Item(defaultSettings())
+    }
     val COBALT_LIGHTER = register("cobalt_lighter")
-    { CobaltLighterItem(defaultSettings().maxDamage(65)) }
+    {
+        CobaltLighterItem(defaultSettings().maxDamage(65))
+    }
     val COBALT_REPEL = register("cobalt_repel")
-    { BlockItem(BlockRegistry.COBALT_REPEL.get(), defaultSettings()) }
+    {
+        BlockItem(BlockRegistry.COBALT_REPEL.get(), defaultSettings())
+    }
+    val THERAKIUM_SHARD = register("therakium_register")
+    {
+        Item(defaultSettings())
+    }
+
+    // Block Items
+    val COBALT_ORE = register("cobalt_ore")
+    {
+        BlockItem(BlockRegistry.COBALT_ORE.get(), defaultSettings())
+    }
+    val COBALT_BLOCK = register("cobalt_block")
+    {
+        BlockItem(BlockRegistry.COBALT_BLOCK.get(), defaultSettings())
+    }
+    val THERAKIUM_ORE = register("therakium_ore")
+    {
+        BlockItem(BlockRegistry.THERAKIUM_ORE.get(), defaultSettings())
+    }
+    val THERAKIUM_BLOCK = register("therakium_block")
+    {
+        BlockItem(BlockRegistry.THERAKIUM_BLOCK.get(), defaultSettings())
+    }
+    val RHYOLITE = register("rhyolite")
+    {
+        BlockItem(BlockRegistry.RHYOLITE.get(), defaultSettings())
+    }
+    val POLISHED_RHYOLITE = register("polished_rhyolite")
+    {
+        BlockItem(BlockRegistry.POLISHED_RHYOLITE.get(), defaultSettings())
+    }
 
     fun register() {
         /* clinit */

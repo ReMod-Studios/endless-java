@@ -5,6 +5,7 @@ import com.remodstudios.endless.Endless.id
 import me.shedaniel.architectury.registry.RegistrySupplier
 import net.minecraft.block.AbstractBlock.Settings
 import net.minecraft.block.Block
+import net.minecraft.block.Blocks
 import net.minecraft.block.Material
 import net.minecraft.block.MaterialColor
 import net.minecraft.sound.BlockSoundGroup
@@ -18,12 +19,41 @@ object BlockRegistry {
         return REGISTRY.registerSupplied(id(path), supplier)
     }
 
-    val TEST_BLOCK = register("test_block")
-    { Block(Settings.of(Material.STONE, MaterialColor.PURPLE)) }
+//    val TEST_BLOCK = register("test_block")
+//    { Block(Settings.of(Material.STONE, MaterialColor.PURPLE)) }
+
+    val COBALT_ORE = register("cobalt_ore")
+    {
+        Block(Settings.copy(Blocks.END_STONE))
+    }
+    val COBALT_BLOCK = register("cobalt_block")
+    {
+        Block(Settings.copy(Blocks.IRON_BLOCK).sounds(BlockSoundGroup.STONE))
+    }
     val STATIC_CHARGE = register("static_charge")
-    { StaticChargeBlock(Settings.of(Material.PLANT, MaterialColor.YELLOW).sounds(BlockSoundGroup.WOOL).nonOpaque()) }
+    {
+        StaticChargeBlock(Settings.of(Material.PLANT, MaterialColor.YELLOW).sounds(BlockSoundGroup.WOOL).nonOpaque())
+    }
     val COBALT_REPEL = register("cobalt_repel")
-    { RepelBlock(Settings.of(Material.GLASS, MaterialColor.BLUE).nonOpaque()) }
+    {
+        RepelBlock(Settings.of(Material.GLASS, MaterialColor.BLUE).nonOpaque())
+    }
+    val THERAKIUM_ORE = register("therakium_ore")
+    {
+        Block(Settings.copy(Blocks.END_STONE))
+    }
+    val THERAKIUM_BLOCK = register("therakium_block")
+    {
+        Block(Settings.copy(Blocks.IRON_BLOCK).sounds(BlockSoundGroup.STONE))
+    }
+    val RHYOLITE = register("rhyolite")
+    {
+        Block(Settings.copy(Blocks.GRANITE))
+    }
+    val POLISHED_RHYOLITE = register("polished_rhyolite")
+    {
+        Block(Settings.copy(Blocks.POLISHED_GRANITE))
+    }
 
     fun register() {
         /* clinit */
