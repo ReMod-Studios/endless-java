@@ -2,7 +2,6 @@
     "itemGroup.endless.group": "Endless",
 
     "item.endless.cobalt_dust": "Cobalt Dust",
-    "item.endless.cobalt_repel": "Cobalt Repel",
     "item.endless.cobalt_lighter": "Cobalt Lighter",
     "item.endless.cobalt_dynamite": "Cobalt Dynamite",
 
@@ -21,6 +20,7 @@
     "block.endless.cobalt_ore": "Cobalt Ore",
     "block.endless.cobalt_block": "Block of Cobalt",
     "block.endless.static_charge": "Static Charge Block",
+    "block.endless.cobalt_repel": "Cobalt Repel",
 
     "block.endless.therakium_ore": "Therakium Ore",
     "block.endless.therakium_block": "Block of Therakium",
