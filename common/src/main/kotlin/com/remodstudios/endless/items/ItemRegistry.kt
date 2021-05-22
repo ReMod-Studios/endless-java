@@ -38,7 +38,7 @@ object ItemRegistry {
     {
         CobaltLighterItem(defaultSettings().maxDamage(65))
     }
-    val THERAKIUM_SHARD = register("therakium_register")
+    val THERAKIUM_SHARD = register("therakium_shard")
     {
         Item(defaultSettings())
     }
