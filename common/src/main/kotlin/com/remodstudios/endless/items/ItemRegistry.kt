@@ -14,7 +14,7 @@ import java.util.function.Supplier
 
 @SuppressWarnings("unused")
 object ItemRegistry {
-    private val REGISTRY = Endless.REGISTRIES.get(Registry.ITEM_KEY)
+    private val REGISTRY = Endless.REGISTRIES[Registry.ITEM_KEY]
 
     private fun register(path: String, supplier: Supplier<Item>): RegistrySupplier<Item> {
         return REGISTRY.registerSupplied(id(path), supplier)

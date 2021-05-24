@@ -13,7 +13,7 @@ import net.minecraft.util.registry.Registry.BLOCK_KEY
 import java.util.function.Supplier
 
 object BlockRegistry {
-    private val REGISTRY = Endless.REGISTRIES.get(BLOCK_KEY)
+    private val REGISTRY = Endless.REGISTRIES[BLOCK_KEY]
 
     private fun register(path: String, supplier: Supplier<Block>): RegistrySupplier<Block> {
         return REGISTRY.registerSupplied(id(path), supplier)
