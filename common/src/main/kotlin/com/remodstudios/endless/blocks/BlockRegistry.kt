@@ -1,7 +1,6 @@
 package com.remodstudios.endless.blocks
 
 import com.remodstudios.endless.Endless
-import com.remodstudios.endless.Endless.id
 import me.shedaniel.architectury.registry.RegistrySupplier
 import net.minecraft.block.AbstractBlock.Settings
 import net.minecraft.block.Block
@@ -13,10 +12,10 @@ import net.minecraft.util.registry.Registry.BLOCK_KEY
 import java.util.function.Supplier
 
 object BlockRegistry {
-    private val REGISTRY = Endless.REGISTRIES[BLOCK_KEY]
+    private val REGISTRY = Endless.registry(BLOCK_KEY)
 
     private fun register(path: String, supplier: Supplier<Block>): RegistrySupplier<Block> {
-        return REGISTRY.registerSupplied(id(path), supplier)
+        return REGISTRY.register(path, supplier)
     }
 
     val COBALT_ORE = register("cobalt_ore")
@@ -54,5 +53,6 @@ object BlockRegistry {
 
     fun register() {
         /* clinit */
+        REGISTRY.register()
     }
 }

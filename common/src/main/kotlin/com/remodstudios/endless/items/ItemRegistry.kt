@@ -9,15 +9,15 @@ import net.minecraft.item.BlockItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
-import net.minecraft.util.registry.Registry
+import net.minecraft.util.registry.Registry.ITEM_KEY
 import java.util.function.Supplier
 
 @SuppressWarnings("unused")
 object ItemRegistry {
-    private val REGISTRY = Endless.REGISTRIES[Registry.ITEM_KEY]
+    private val REGISTRY = Endless.registry(ITEM_KEY)
 
     private fun register(path: String, supplier: Supplier<Item>): RegistrySupplier<Item> {
-        return REGISTRY.registerSupplied(id(path), supplier)
+        return REGISTRY.register(path, supplier)
     }
 
     private val CREATIVE_TAB: ItemGroup = CreativeTabs.create(id("group")) { ItemStack(COBALT_LIGHTER.get()) }
@@ -76,5 +76,6 @@ object ItemRegistry {
 
     fun register() {
         /* clinit */
+        REGISTRY.register()
     }
 }
