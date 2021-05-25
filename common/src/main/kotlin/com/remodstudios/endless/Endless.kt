@@ -2,6 +2,7 @@ package com.remodstudios.endless
 
 import com.remodstudios.endless.blocks.BlockRegistry
 import com.remodstudios.endless.items.ItemRegistry
+import com.remodstudios.endless.world.WorldGenFeatureRegistry
 import me.shedaniel.architectury.registry.DeferredRegister
 import net.minecraft.entity.damage.DamageSource
 import net.minecraft.util.Identifier
@@ -17,7 +18,7 @@ object Endless {
         printHelloWorld()
         BlockRegistry.register()
         ItemRegistry.register()
-        //WorldGenFeatureRegistry.register()    // FIXME mysterious NPE here, no idea what's going on there -ACDLeo
+        WorldGenFeatureRegistry.register()
         //ParticleTypeRegistry.register()       // TODO figure out how to particle in Architectury
     }
 
