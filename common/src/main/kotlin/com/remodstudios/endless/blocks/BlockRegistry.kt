@@ -50,6 +50,10 @@ object BlockRegistry {
     {
         Block(Settings.copy(Blocks.POLISHED_GRANITE))
     }
+    val LUNARIC_END_STONE = register("lunaric_end_stone")
+    {
+        Block(Settings.copy(Blocks.END_STONE))
+    }
 
     fun register() {
         /* clinit */

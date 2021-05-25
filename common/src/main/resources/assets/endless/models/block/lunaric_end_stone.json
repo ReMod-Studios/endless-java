@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "endless:blocks/lunaric_end_stone_top",
+    "bottom": "minecraft:block/end_stone",
+    "side": "endless:blocks/lunaric_end_stone_side"
+  }
+}

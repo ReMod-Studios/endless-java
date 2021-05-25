@@ -72,6 +72,10 @@ object ItemRegistry {
     {
         BlockItem(BlockRegistry.POLISHED_RHYOLITE.get(), defaultSettings())
     }
+    val LUNARIC_END_STONE = register("lunaric_end_stone")
+    {
+        BlockItem(BlockRegistry.LUNARIC_END_STONE.get(), defaultSettings())
+    }
     // endregion
 
     fun register() {
