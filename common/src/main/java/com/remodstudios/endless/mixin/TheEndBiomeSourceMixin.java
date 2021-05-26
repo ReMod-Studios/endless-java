@@ -21,7 +21,7 @@ public abstract class TheEndBiomeSourceMixin {
         long l = x >> 2;
         long m = z >> 2;
         if (l * l + m * m <= 256L) {
-            Biome testBiome = BiomeRegistry.INSTANCE.getTEST_BIOME();
+            Biome testBiome = BiomeRegistry.TEST_BIOME;
             if (!dumpedTestBiomeInfo) {
                 dumpedTestBiomeInfo = true;
                 System.out.println("Hey. So...");

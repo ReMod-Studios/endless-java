@@ -12,6 +12,7 @@ import net.minecraft.util.registry.RegistryKey
 object Endless {
     const val MOD_ID = "endless"
 
+    @JvmField
     val SHOCK_DAMAGE_SOURCE: DamageSource = ModDamageSource("shock").setUnblockable()
 
     fun init() {

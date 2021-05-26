@@ -31,6 +31,7 @@ object BiomeRegistry {
         return builder.build()
     }
 
+    @JvmField
     val TEST_BIOME = register("test_biome", Biome.Builder()
         .category(Biome.Category.THEEND)
         .precipitation(Biome.Precipitation.NONE)
