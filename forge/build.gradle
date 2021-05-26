@@ -13,6 +13,7 @@ architectury {
 
 loom {
     useFabricMixin = true
+    mixinConfig 'endless.common.mixns.json'
 }
 
 repositories {

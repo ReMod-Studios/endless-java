@@ -1,4 +1,4 @@
-package com.remodstudios.endless.world
+package com.remodstudios.endless.world.gen.feature
 
 import com.remodstudios.endless.Endless.id
 import com.remodstudios.endless.blocks.BlockRegistry
@@ -6,7 +6,6 @@ import me.shedaniel.architectury.registry.BiomeModifications
 import net.minecraft.block.Blocks
 import net.minecraft.structure.rule.BlockMatchRuleTest
 import net.minecraft.util.registry.BuiltinRegistries
-import net.minecraft.util.registry.Registry
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.feature.ConfiguredFeature
@@ -14,12 +13,12 @@ import net.minecraft.world.gen.feature.ConfiguredFeatures
 import net.minecraft.world.gen.feature.Feature
 import net.minecraft.world.gen.feature.OreFeatureConfig
 
-object WorldGenFeatureRegistry {
+object ConfiguredFeatureRegistry {
     private val RULE_END_STONE = BlockMatchRuleTest(Blocks.END_STONE)
     private val HEIGHTMAP_SURFACE_SQUARE = ConfiguredFeatures.Decorators.HEIGHTMAP_WORLD_SURFACE.spreadHorizontally()
 
     private fun register(path: String, feature: ConfiguredFeature<*, *>): ConfiguredFeature<*, *> {
-        return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, id(path), feature)
+        return BuiltinRegistries.add(BuiltinRegistries.CONFIGURED_FEATURE, id(path), feature)
     }
 
     private val LUNARIC_END_STONE = register("lunaric_end_stone",

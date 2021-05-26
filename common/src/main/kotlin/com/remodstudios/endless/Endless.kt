@@ -2,7 +2,7 @@ package com.remodstudios.endless
 
 import com.remodstudios.endless.blocks.BlockRegistry
 import com.remodstudios.endless.items.ItemRegistry
-import com.remodstudios.endless.world.WorldGenFeatureRegistry
+import com.remodstudios.endless.world.WorldRegistries
 import me.shedaniel.architectury.registry.DeferredRegister
 import net.minecraft.entity.damage.DamageSource
 import net.minecraft.util.Identifier
@@ -18,8 +18,8 @@ object Endless {
         printHelloWorld()
         BlockRegistry.register()
         ItemRegistry.register()
-        WorldGenFeatureRegistry.register()
-        //ParticleTypeRegistry.register()       // TODO figure out how to particle in Architectury
+        WorldRegistries.register()
+        //ParticleTypeRegistry.register()   // TODO figure out how to particle in Architectury
     }
 
     fun id(path: String): Identifier {

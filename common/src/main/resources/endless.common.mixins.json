@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.remodstudios.endless.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "BuiltinBiomesAccessor",
+    "TheEndBiomeSourceMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
