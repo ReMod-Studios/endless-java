@@ -2,8 +2,6 @@ package com.remodstudios.endless.world.biome
 
 import com.remodstudios.endless.Endless.id
 import com.remodstudios.endless.mixin.BuiltinBiomesAccessor
-import net.minecraft.entity.EntityType
-import net.minecraft.entity.SpawnGroup
 import net.minecraft.sound.BiomeMoodSound
 import net.minecraft.util.registry.BuiltinRegistries
 import net.minecraft.util.registry.Registry
@@ -14,7 +12,7 @@ import net.minecraft.world.gen.feature.ConfiguredFeatures
 import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilders
 
 object BiomeRegistry {
-    val END_TEMPLATE = biomeTemplate {
+    private val END_TEMPLATE = biomeTemplate {
         category = Biome.Category.THEEND
         precipitation = Biome.Precipitation.NONE
         depth = 0.1F
@@ -35,10 +33,6 @@ object BiomeRegistry {
             }
         }
         spawnSettings {
-            spawns(SpawnGroup.CREATURE) {
-                +entry(EntityType.COW, 10, 4, 4)
-            }
-            density(EntityType.COW, 20.0, 10.0)
             vanilla.defaultEnd()
         }
     }

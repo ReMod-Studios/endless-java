@@ -2,6 +2,7 @@ package com.remodstudios.endless.world.biome
 
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.SpawnGroup
+import net.minecraft.particle.ParticleEffect
 import net.minecraft.sound.BiomeAdditionsSound
 import net.minecraft.sound.BiomeMoodSound
 import net.minecraft.sound.MusicSound
@@ -104,6 +105,9 @@ fun biome(base: BiomeTemplate, init: BiomeTemplate.() -> Unit) : Biome {
     return biome(biomeTemplate(base, init))
 }
 
+@DslMarker
+annotation class BiomeTemplateDslMarker
+
 class BiomeTemplate {
     var category: Biome.Category? = null
     var precipitation: Biome.Precipitation? = null
@@ -113,9 +117,13 @@ class BiomeTemplate {
     var temperatureModifier: Biome.TemperatureModifier = Biome.TemperatureModifier.NONE
     var downfall: Float? = null
     var effects: SpecialEffects? = null
+        private set
     var generationSettings: GenerationSettings? = null
+        private set
     var spawnSettings: SpawnSettings? = null
+        private set
 
+    @BiomeTemplateDslMarker
     class SpecialEffects {
         var fogColor: Int? = null
         var waterColor: Int? = null
@@ -125,11 +133,21 @@ class BiomeTemplate {
         var grassColor: Int? = null
         var grassColorModifier: BiomeEffects.GrassColorModifier? = null
         var particleConfig: BiomeParticleConfig? = null
+            private set
         var loopSound: SoundEvent? = null
         var moodSound: BiomeMoodSound? = null
         var additionsSound: BiomeAdditionsSound? = null
+            private set
         var music: MusicSound? = null
-        
+
+        fun particleConfig(particle: ParticleEffect, probability: Float) {
+            particleConfig = BiomeParticleConfig(particle, probability)
+        }
+
+        fun additionsSound(sound: SoundEvent, chance: Double) {
+            additionsSound = BiomeAdditionsSound(sound, chance)
+        }
+
         fun copy(): SpecialEffects {
             val copy = SpecialEffects()
             copy.fogColor = fogColor
@@ -148,11 +166,12 @@ class BiomeTemplate {
         }
     }
 
+    @BiomeTemplateDslMarker
     class SpawnSettings {
         val vanilla = VanillaSpawns()
 
-        val spawners: Map<SpawnGroup, MutableList<net.minecraft.world.biome.SpawnSettings.SpawnEntry>>
-        val spawnCosts: MutableMap<EntityType<*>, Density> = LinkedHashMap()
+        internal val spawners: Map<SpawnGroup, MutableList<net.minecraft.world.biome.SpawnSettings.SpawnEntry>>
+        internal val spawnCosts: MutableMap<EntityType<*>, Density> = LinkedHashMap()
         var creatureSpawnProbability = 0.1f
         var playerSpawnFriendly = false
 
@@ -163,12 +182,13 @@ class BiomeTemplate {
             spawners = a.toMap()
         }
 
-        fun spawns(group: SpawnGroup, init: Spawns.() -> Unit): Spawns {
+        fun forGroup(group: SpawnGroup, init: Spawns.() -> Unit): Spawns {
             val spawns = Spawns(this, group)
             spawns.init()
             return spawns
         }
 
+        @BiomeTemplateDslMarker
         class Spawns(private var settings: SpawnSettings, private var group: SpawnGroup) {
             fun entry(entityType: EntityType<*>, weight: Int, minGroupSize: Int, maxGroupSize: Int): net.minecraft.world.biome.SpawnSettings.SpawnEntry {
                 return net.minecraft.world.biome.SpawnSettings.SpawnEntry(
@@ -184,7 +204,7 @@ class BiomeTemplate {
             }
         }
 
-        fun density(entityType: EntityType<*>, mass: Double, gravityLimit: Double) {
+        fun addCost(entityType: EntityType<*>, mass: Double, gravityLimit: Double) {
             spawnCosts[entityType] = Density(mass, gravityLimit)
         }
 
@@ -192,10 +212,10 @@ class BiomeTemplate {
 
         class VanillaSpawns {
             // TODO the rest of the methods in DefaultBiomeFeatures
-            
-            val builderModifiers: MutableList<Consumer<net.minecraft.world.biome.SpawnSettings.Builder>> = ArrayList()
 
-            fun apply(builder: net.minecraft.world.biome.SpawnSettings.Builder) {
+            internal val builderModifiers: MutableList<Consumer<net.minecraft.world.biome.SpawnSettings.Builder>> = ArrayList()
+
+            internal fun apply(builder: net.minecraft.world.biome.SpawnSettings.Builder) {
                 builderModifiers.forEach { it.accept(builder) }
             }
 
@@ -219,13 +239,14 @@ class BiomeTemplate {
         }
     }
 
+    @BiomeTemplateDslMarker
     class GenerationSettings {
         val vanilla = VanillaGeneration()
 
         var surfaceBuilder: ConfiguredSurfaceBuilder<*>? = null
-        val carvers: MutableMap<GenerationStep.Carver, MutableList<ConfiguredCarver<*>>> = LinkedHashMap()
-        val features: MutableMap<GenerationStep.Feature, MutableList<ConfiguredFeature<*, *>>> = LinkedHashMap()
-        val structureFeatures: MutableList<ConfiguredStructureFeature<*, *>> = ArrayList()
+        internal val carvers: MutableMap<GenerationStep.Carver, MutableList<ConfiguredCarver<*>>> = LinkedHashMap()
+        internal val features: MutableMap<GenerationStep.Feature, MutableList<ConfiguredFeature<*, *>>> = LinkedHashMap()
+        internal val structureFeatures: MutableList<ConfiguredStructureFeature<*, *>> = ArrayList()
 
         fun carvers(step: GenerationStep.Carver, init: Carvers.() -> Unit): Carvers {
             val carvers = Carvers(this, step)
@@ -243,6 +264,7 @@ class BiomeTemplate {
             structureFeatures.add(this)
         }
 
+        @BiomeTemplateDslMarker
         class Carvers(private var settings: GenerationSettings, private var step: GenerationStep.Carver) {
             init {
                 settings.carvers.putIfAbsent(step, ArrayList())
@@ -253,6 +275,7 @@ class BiomeTemplate {
             }
         }
 
+        @BiomeTemplateDslMarker
         class Features(private var settings: GenerationSettings, private var step: GenerationStep.Feature) {
             init {
                 settings.features.putIfAbsent(step, ArrayList())
@@ -266,9 +289,9 @@ class BiomeTemplate {
         class VanillaGeneration {
             // TODO the rest of the methods in DefaultBiomeFeatures
 
-            val builderModifiers: MutableList<Consumer<net.minecraft.world.biome.GenerationSettings.Builder>> = ArrayList()
+            internal val builderModifiers: MutableList<Consumer<net.minecraft.world.biome.GenerationSettings.Builder>> = ArrayList()
 
-            fun apply(builder: net.minecraft.world.biome.GenerationSettings.Builder) {
+            internal fun apply(builder: net.minecraft.world.biome.GenerationSettings.Builder) {
                 builderModifiers.forEach { it.accept(builder) }
             }
         }
@@ -289,21 +312,21 @@ class BiomeTemplate {
     }
 
     fun effects(init: SpecialEffects.() -> Unit): SpecialEffects {
-        val effects = SpecialEffects()
+        val effects = this.effects ?: SpecialEffects()
         effects.init()
         this.effects = effects
         return effects
     }
 
     fun spawnSettings(init: SpawnSettings.() -> Unit): SpawnSettings {
-        val spawnSettings = SpawnSettings()
+        val spawnSettings = this.spawnSettings ?: SpawnSettings()
         spawnSettings.init()
         this.spawnSettings = spawnSettings
         return spawnSettings
     }
 
     fun generationSettings(init: GenerationSettings.() -> Unit): GenerationSettings {
-        val generationSettings = GenerationSettings()
+        val generationSettings = this.generationSettings ?: GenerationSettings()
         generationSettings.init()
         this.generationSettings = generationSettings
         return generationSettings
