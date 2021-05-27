@@ -106,9 +106,9 @@ fun biome(base: BiomeTemplate, init: BiomeTemplate.() -> Unit) : Biome {
 }
 
 @DslMarker
-annotation class BiomeTemplateDslMarker
+private annotation class BiomeTemplateDslMarker
 
-class BiomeTemplate {
+class BiomeTemplate internal constructor() {
     var category: Biome.Category? = null
     var precipitation: Biome.Precipitation? = null
     var depth: Float? = null
@@ -124,7 +124,7 @@ class BiomeTemplate {
         private set
 
     @BiomeTemplateDslMarker
-    class SpecialEffects {
+    class SpecialEffects internal constructor() {
         var fogColor: Int? = null
         var waterColor: Int? = null
         var waterFogColor: Int? = null
@@ -148,7 +148,7 @@ class BiomeTemplate {
             additionsSound = BiomeAdditionsSound(sound, chance)
         }
 
-        fun copy(): SpecialEffects {
+        internal fun copy(): SpecialEffects {
             val copy = SpecialEffects()
             copy.fogColor = fogColor
             copy.waterColor = waterColor
@@ -167,7 +167,7 @@ class BiomeTemplate {
     }
 
     @BiomeTemplateDslMarker
-    class SpawnSettings {
+    class SpawnSettings internal constructor() {
         val vanilla = VanillaSpawns()
 
         internal val spawners: Map<SpawnGroup, MutableList<net.minecraft.world.biome.SpawnSettings.SpawnEntry>>
@@ -189,7 +189,7 @@ class BiomeTemplate {
         }
 
         @BiomeTemplateDslMarker
-        class Spawns(private var settings: SpawnSettings, private var group: SpawnGroup) {
+        class Spawns internal constructor(private var settings: SpawnSettings, private var group: SpawnGroup) {
             fun entry(entityType: EntityType<*>, weight: Int, minGroupSize: Int, maxGroupSize: Int): net.minecraft.world.biome.SpawnSettings.SpawnEntry {
                 return net.minecraft.world.biome.SpawnSettings.SpawnEntry(
                     entityType,
@@ -208,7 +208,7 @@ class BiomeTemplate {
             spawnCosts[entityType] = Density(mass, gravityLimit)
         }
 
-        data class Density(val mass: Double, val gravityLimit: Double)
+        internal data class Density(val mass: Double, val gravityLimit: Double)
 
         class VanillaSpawns {
             internal val builderModifiers: MutableList<Consumer<net.minecraft.world.biome.SpawnSettings.Builder>> = ArrayList()
@@ -266,7 +266,7 @@ class BiomeTemplate {
             }
         }
 
-        fun copy(): SpawnSettings {
+        internal fun copy(): SpawnSettings {
             val copy = SpawnSettings()
             copy.vanilla.builderModifiers += vanilla.builderModifiers
             spawners.forEach {
@@ -282,7 +282,7 @@ class BiomeTemplate {
     }
 
     @BiomeTemplateDslMarker
-    class GenerationSettings {
+    class GenerationSettings internal constructor() {
         val vanilla = VanillaGeneration()
 
         var surfaceBuilder: ConfiguredSurfaceBuilder<*>? = null
@@ -307,7 +307,7 @@ class BiomeTemplate {
         }
 
         @BiomeTemplateDslMarker
-        class Carvers(private var settings: GenerationSettings, private var step: GenerationStep.Carver) {
+        class Carvers internal constructor(private var settings: GenerationSettings, private var step: GenerationStep.Carver) {
             init {
                 settings.carvers.putIfAbsent(step, ArrayList())
             }
@@ -318,7 +318,7 @@ class BiomeTemplate {
         }
 
         @BiomeTemplateDslMarker
-        class Features(private var settings: GenerationSettings, private var step: GenerationStep.Feature) {
+        class Features internal constructor(private var settings: GenerationSettings, private var step: GenerationStep.Feature) {
             init {
                 settings.features.putIfAbsent(step, ArrayList())
             }
@@ -328,7 +328,7 @@ class BiomeTemplate {
             }
         }
 
-        class VanillaGeneration {
+        class VanillaGeneration internal constructor() {
             internal val builderModifiers: MutableList<Consumer<net.minecraft.world.biome.GenerationSettings.Builder>> = ArrayList()
 
             internal fun apply(builder: net.minecraft.world.biome.GenerationSettings.Builder) {
@@ -608,7 +608,7 @@ class BiomeTemplate {
             }
         }
 
-        fun copy(): GenerationSettings {
+        internal fun copy(): GenerationSettings {
             val copy = GenerationSettings()
             copy.vanilla.builderModifiers += vanilla.builderModifiers
             copy.surfaceBuilder = surfaceBuilder
@@ -644,7 +644,7 @@ class BiomeTemplate {
         return generationSettings
     }
 
-    fun copy(): BiomeTemplate {
+    internal fun copy(): BiomeTemplate {
         val copy = BiomeTemplate()
         copy.category = category
         copy.precipitation = precipitation
