@@ -211,15 +211,57 @@ class BiomeTemplate {
         data class Density(val mass: Double, val gravityLimit: Double)
 
         class VanillaSpawns {
-            // TODO the rest of the methods in DefaultBiomeFeatures
-
             internal val builderModifiers: MutableList<Consumer<net.minecraft.world.biome.SpawnSettings.Builder>> = ArrayList()
 
             internal fun apply(builder: net.minecraft.world.biome.SpawnSettings.Builder) {
                 builderModifiers.forEach { it.accept(builder) }
             }
 
-            fun defaultEnd() {
+            fun farmAnimals() {
+                builderModifiers.add(DefaultBiomeFeatures::addFarmAnimals)
+            }
+
+            fun bats() {
+                builderModifiers.add(DefaultBiomeFeatures::addBats)
+            }
+
+            fun batsAndMonsters() {
+                builderModifiers.add(DefaultBiomeFeatures::addBatsAndMonsters)
+            }
+            
+            fun oceanMobs(squidWeight: Int, squidMaxGroupSize: Int, codWeight: Int) {
+                builderModifiers.add { DefaultBiomeFeatures.addOceanMobs(it, squidWeight, squidMaxGroupSize, codWeight) }
+            }
+            
+            fun warmOceanMobs(squidWeight: Int, squidMaxGroupSize: Int) {
+                builderModifiers.add { DefaultBiomeFeatures.addWarmOceanMobs(it, squidWeight, squidMaxGroupSize) }
+            }
+
+            fun plainsMobs() {
+                builderModifiers.add(DefaultBiomeFeatures::addPlainsMobs)
+            }
+
+            fun snowyMobs() {
+                builderModifiers.add(DefaultBiomeFeatures::addSnowyMobs)
+            }
+
+            fun desertMobs() {
+                builderModifiers.add(DefaultBiomeFeatures::addDesertMobs)
+            }
+            
+            fun monsters(zombieWeight: Int, zombieVillagerWeight: Int, skeletonWeight: Int) {
+                builderModifiers.add { DefaultBiomeFeatures.addMonsters(it, zombieWeight, zombieVillagerWeight, skeletonWeight) }
+            }
+
+            fun mushroomMobs() {
+                builderModifiers.add(DefaultBiomeFeatures::addMushroomMobs)
+            }
+
+            fun jungleMobs() {
+                builderModifiers.add(DefaultBiomeFeatures::addJungleMobs)
+            }
+
+            fun endMobs() {
                 builderModifiers.add(DefaultBiomeFeatures::addEndMobs)
             }
         }
@@ -287,12 +329,282 @@ class BiomeTemplate {
         }
 
         class VanillaGeneration {
-            // TODO the rest of the methods in DefaultBiomeFeatures
-
             internal val builderModifiers: MutableList<Consumer<net.minecraft.world.biome.GenerationSettings.Builder>> = ArrayList()
 
             internal fun apply(builder: net.minecraft.world.biome.GenerationSettings.Builder) {
                 builderModifiers.forEach { it.accept(builder) }
+            }
+
+            fun badlandsUndergroundStructures() {
+                builderModifiers.add(DefaultBiomeFeatures::addBadlandsUndergroundStructures)
+            }
+
+            fun defaultUndergroundStructures() {
+                builderModifiers.add(DefaultBiomeFeatures::addDefaultUndergroundStructures)
+            }
+
+            fun oceanStructures() {
+                builderModifiers.add(DefaultBiomeFeatures::addOceanStructures)
+            }
+
+            fun landCarvers() {
+                builderModifiers.add(DefaultBiomeFeatures::addLandCarvers)
+            }
+
+            fun oceanCarvers() {
+                builderModifiers.add(DefaultBiomeFeatures::addOceanCarvers)
+            }
+
+            fun defaultLakes() {
+                builderModifiers.add(DefaultBiomeFeatures::addDefaultLakes)
+            }
+
+            fun desertLakes() {
+                builderModifiers.add(DefaultBiomeFeatures::addDesertLakes)
+            }
+
+            fun dungeons() {
+                builderModifiers.add(DefaultBiomeFeatures::addDungeons)
+            }
+
+            fun mineables() {
+                builderModifiers.add(DefaultBiomeFeatures::addMineables)
+            }
+
+            fun defaultOres() {
+                builderModifiers.add(DefaultBiomeFeatures::addDefaultOres)
+            }
+
+            fun extraGoldOre() {
+                builderModifiers.add(DefaultBiomeFeatures::addExtraGoldOre)
+            }
+
+            fun emeraldOre() {
+                builderModifiers.add(DefaultBiomeFeatures::addEmeraldOre)
+            }
+
+            fun infestedStone() {
+                builderModifiers.add(DefaultBiomeFeatures::addInfestedStone)
+            }
+
+            fun defaultDisks() {
+                builderModifiers.add(DefaultBiomeFeatures::addDefaultDisks)
+            }
+
+            fun clay() {
+                builderModifiers.add(DefaultBiomeFeatures::addClay)
+            }
+
+            fun mossyRocks() {
+                builderModifiers.add(DefaultBiomeFeatures::addMossyRocks)
+            }
+
+            fun largeFerns() {
+                builderModifiers.add(DefaultBiomeFeatures::addLargeFerns)
+            }
+
+            fun sweetBerryBushesSnowy() {
+                builderModifiers.add(DefaultBiomeFeatures::addSweetBerryBushesSnowy)
+            }
+
+            fun sweetBerryBushes() {
+                builderModifiers.add(DefaultBiomeFeatures::addSweetBerryBushes)
+            }
+
+            fun bamboo() {
+                builderModifiers.add(DefaultBiomeFeatures::addBamboo)
+            }
+
+            fun bambooJungleTrees() {
+                builderModifiers.add(DefaultBiomeFeatures::addBambooJungleTrees)
+            }
+
+            fun taigaTrees() {
+                builderModifiers.add(DefaultBiomeFeatures::addTaigaTrees)
+            }
+
+            fun waterBiomeOakTrees() {
+                builderModifiers.add(DefaultBiomeFeatures::addWaterBiomeOakTrees)
+            }
+
+            fun birchTrees() {
+                builderModifiers.add(DefaultBiomeFeatures::addBirchTrees)
+            }
+
+            fun forestTrees() {
+                builderModifiers.add(DefaultBiomeFeatures::addForestTrees)
+            }
+
+            fun tallBirchTrees() {
+                builderModifiers.add(DefaultBiomeFeatures::addTallBirchTrees)
+            }
+
+            fun savannaTrees() {
+                builderModifiers.add(DefaultBiomeFeatures::addSavannaTrees)
+            }
+
+            fun extraSavannaTrees() {
+                builderModifiers.add(DefaultBiomeFeatures::addExtraSavannaTrees)
+            }
+
+            fun mountainTrees() {
+                builderModifiers.add(DefaultBiomeFeatures::addMountainTrees)
+            }
+
+            fun extraMountainTrees() {
+                builderModifiers.add(DefaultBiomeFeatures::addExtraMountainTrees)
+            }
+
+            fun jungleTrees() {
+                builderModifiers.add(DefaultBiomeFeatures::addJungleTrees)
+            }
+
+            fun jungleEdgeTrees() {
+                builderModifiers.add(DefaultBiomeFeatures::addJungleEdgeTrees)
+            }
+
+            fun badlandsPlateauTrees() {
+                builderModifiers.add(DefaultBiomeFeatures::addBadlandsPlateauTrees)
+            }
+
+            fun snowySpruceTrees() {
+                builderModifiers.add(DefaultBiomeFeatures::addSnowySpruceTrees)
+            }
+
+            fun jungleGrass() {
+                builderModifiers.add(DefaultBiomeFeatures::addJungleGrass)
+            }
+
+            fun savannaTallGrass() {
+                builderModifiers.add(DefaultBiomeFeatures::addSavannaTallGrass)
+            }
+
+            fun shatteredSavannaGrass() {
+                builderModifiers.add(DefaultBiomeFeatures::addShatteredSavannaGrass)
+            }
+
+            fun savannaGrass() {
+                builderModifiers.add(DefaultBiomeFeatures::addSavannaGrass)
+            }
+
+            fun badlandsGrass() {
+                builderModifiers.add(DefaultBiomeFeatures::addBadlandsGrass)
+            }
+
+            fun forestFlowers() {
+                builderModifiers.add(DefaultBiomeFeatures::addForestFlowers)
+            }
+
+            fun forestGrass() {
+                builderModifiers.add(DefaultBiomeFeatures::addForestGrass)
+            }
+
+            fun swampFeatures() {
+                builderModifiers.add(DefaultBiomeFeatures::addSwampFeatures)
+            }
+
+            fun mushroomFieldsFeatures() {
+                builderModifiers.add(DefaultBiomeFeatures::addMushroomFieldsFeatures)
+            }
+
+            fun plainsFeatures() {
+                builderModifiers.add(DefaultBiomeFeatures::addPlainsFeatures)
+            }
+
+            fun desertDeadBushes() {
+                builderModifiers.add(DefaultBiomeFeatures::addDesertDeadBushes)
+            }
+
+            fun giantTaigaGrass() {
+                builderModifiers.add(DefaultBiomeFeatures::addGiantTaigaGrass)
+            }
+
+            fun defaultFlowers() {
+                builderModifiers.add(DefaultBiomeFeatures::addDefaultFlowers)
+            }
+
+            fun extraDefaultFlowers() {
+                builderModifiers.add(DefaultBiomeFeatures::addExtraDefaultFlowers)
+            }
+
+            fun defaultGrass() {
+                builderModifiers.add(DefaultBiomeFeatures::addDefaultGrass)
+            }
+
+            fun taigaGrass() {
+                builderModifiers.add(DefaultBiomeFeatures::addTaigaGrass)
+            }
+
+            fun plainsTallGrass() {
+                builderModifiers.add(DefaultBiomeFeatures::addPlainsTallGrass)
+            }
+
+            fun defaultMushrooms() {
+                builderModifiers.add(DefaultBiomeFeatures::addDefaultMushrooms)
+            }
+
+            fun defaultVegetation() {
+                builderModifiers.add(DefaultBiomeFeatures::addDefaultVegetation)
+            }
+
+            fun badlandsVegetation() {
+                builderModifiers.add(DefaultBiomeFeatures::addBadlandsVegetation)
+            }
+
+            fun jungleVegetation() {
+                builderModifiers.add(DefaultBiomeFeatures::addJungleVegetation)
+            }
+
+            fun desertVegetation() {
+                builderModifiers.add(DefaultBiomeFeatures::addDesertVegetation)
+            }
+
+            fun swampVegetation() {
+                builderModifiers.add(DefaultBiomeFeatures::addSwampVegetation)
+            }
+
+            fun desertFeatures() {
+                builderModifiers.add(DefaultBiomeFeatures::addDesertFeatures)
+            }
+
+            fun fossils() {
+                builderModifiers.add(DefaultBiomeFeatures::addFossils)
+            }
+
+            fun kelp() {
+                builderModifiers.add(DefaultBiomeFeatures::addKelp)
+            }
+
+            fun seagrassOnStone() {
+                builderModifiers.add(DefaultBiomeFeatures::addSeagrassOnStone)
+            }
+
+            fun lessKelp() {
+                builderModifiers.add(DefaultBiomeFeatures::addLessKelp)
+            }
+
+            fun springs() {
+                builderModifiers.add(DefaultBiomeFeatures::addSprings)
+            }
+
+            fun icebergs() {
+                builderModifiers.add(DefaultBiomeFeatures::addIcebergs)
+            }
+
+            fun blueIce() {
+                builderModifiers.add(DefaultBiomeFeatures::addBlueIce)
+            }
+
+            fun frozenTopLayer() {
+                builderModifiers.add(DefaultBiomeFeatures::addFrozenTopLayer)
+            }
+
+            fun netherMineables() {
+                builderModifiers.add(DefaultBiomeFeatures::addNetherMineables)
+            }
+
+            fun ancientDebris() {
+                builderModifiers.add(DefaultBiomeFeatures::addAncientDebris)
             }
         }
 

@@ -33,7 +33,7 @@ object BiomeRegistry {
             }
         }
         spawnSettings {
-            vanilla.defaultEnd()
+            vanilla.endMobs()
         }
     }
 
