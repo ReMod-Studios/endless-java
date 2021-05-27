@@ -16,7 +16,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class TheEndBiomeSourceMixin {
     @Unique private boolean dumpedTestBiomeInfo = false;
 
-    @Inject(method = "getBiomeForNoiseGen", at = @At("HEAD"), cancellable = true)
+    // FIXME uncomment the following line once biomes are fixed -ADCLeo
+    //@Inject(method = "getBiomeForNoiseGen", at = @At("HEAD"), cancellable = true)
     private void addOurOwnEvilBiomes(int x, int y, int z, CallbackInfoReturnable<Biome> cir) {
         long l = x >> 2;
         long m = z >> 2;
