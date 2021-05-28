@@ -12,7 +12,7 @@ import net.minecraft.world.gen.feature.ConfiguredFeatures
 import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilders
 
 object BiomeRegistry {
-    private val END_TEMPLATE = biomeTemplate {
+    private val END_TEMPLATE = BiomeTemplate.create {
         category = Biome.Category.THEEND
         precipitation = Biome.Precipitation.NONE
         depth = 0.1F
@@ -26,13 +26,13 @@ object BiomeRegistry {
             skyColor = 0x000000
             moodSound = BiomeMoodSound.CAVE
         }
-        generationSettings {
+        generation {
             surfaceBuilder = ConfiguredSurfaceBuilders.END
             features(GenerationStep.Feature.SURFACE_STRUCTURES) {
                 +ConfiguredFeatures.END_SPIKE
             }
         }
-        spawnSettings {
+        spawns {
             vanilla.endMobs()
         }
     }
@@ -46,7 +46,7 @@ object BiomeRegistry {
     }
 
     @JvmField
-    val TEST_BIOME = register("test_biome", biome(END_TEMPLATE) {
+    val TEST_BIOME = register("test_biome", END_TEMPLATE.build {
         effects {
             fogColor = 0x123456
         }
