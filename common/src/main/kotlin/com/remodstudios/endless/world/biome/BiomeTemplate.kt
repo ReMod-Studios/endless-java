@@ -112,11 +112,11 @@ class BiomeTemplate internal constructor() {
 
     @BiomeTemplateDslMarker
     class SpawnSettings internal constructor() {
-        internal data class Density(val mass: Double, val gravityLimit: Double)
+        private data class Density(val mass: Double, val gravityLimit: Double)
 
         val vanilla = VanillaSpawns()
 
-        internal val spawners: Map<SpawnGroup, MutableList<MCSpawnSettings.SpawnEntry>>
+        private val spawners: Map<SpawnGroup, MutableList<MCSpawnSettings.SpawnEntry>>
         private val spawnCosts: MutableMap<EntityType<*>, Density> = LinkedHashMap()
         var creatureSpawnProbability = 0.1f
         var playerSpawnFriendly = false
@@ -129,13 +129,13 @@ class BiomeTemplate internal constructor() {
         }
 
         fun forGroup(group: SpawnGroup, init: Spawns.() -> Unit): Spawns {
-            val spawns = Spawns(this, group)
+            val spawns = Spawns(group)
             spawns.init()
             return spawns
         }
 
         @BiomeTemplateDslMarker
-        class Spawns internal constructor(private var settings: SpawnSettings, private var group: SpawnGroup) {
+        inner class Spawns internal constructor(private var group: SpawnGroup) {
             fun entry(entityType: EntityType<*>, weight: Int, minGroupSize: Int, maxGroupSize: Int): MCSpawnSettings.SpawnEntry {
                 return MCSpawnSettings.SpawnEntry(
                     entityType,
@@ -146,7 +146,7 @@ class BiomeTemplate internal constructor() {
             }
 
             operator fun MCSpawnSettings.SpawnEntry.unaryPlus() {
-                settings.spawners[group]?.add(this)
+                this@SpawnSettings.spawners[group]?.add(this)
             }
         }
 
@@ -154,7 +154,7 @@ class BiomeTemplate internal constructor() {
             spawnCosts[entityType] = Density(mass, gravityLimit)
         }
 
-        class VanillaSpawns {
+        inner class VanillaSpawns internal constructor() {
             internal val builderModifiers: MutableList<Consumer<MCSpawnSettings.Builder>> = ArrayList()
 
             internal fun apply(builder: MCSpawnSettings.Builder) {
@@ -250,18 +250,18 @@ class BiomeTemplate internal constructor() {
         val vanilla = VanillaGeneration()
 
         var surfaceBuilder: ConfiguredSurfaceBuilder<*>? = null
-        internal val carvers: MutableMap<GenerationStep.Carver, MutableList<ConfiguredCarver<*>>> = LinkedHashMap()
-        internal val features: MutableMap<GenerationStep.Feature, MutableList<ConfiguredFeature<*, *>>> = LinkedHashMap()
+        private val carvers: MutableMap<GenerationStep.Carver, MutableList<ConfiguredCarver<*>>> = LinkedHashMap()
+        private val features: MutableMap<GenerationStep.Feature, MutableList<ConfiguredFeature<*, *>>> = LinkedHashMap()
         private val structureFeatures: MutableList<ConfiguredStructureFeature<*, *>> = ArrayList()
 
         fun carvers(step: GenerationStep.Carver, init: Carvers.() -> Unit): Carvers {
-            val carvers = Carvers(this, step)
+            val carvers = Carvers(step)
             carvers.init()
             return carvers
         }
 
         fun features(step: GenerationStep.Feature, init: Features.() -> Unit): Features {
-            val features = Features(this, step)
+            val features = Features(step)
             features.init()
             return features
         }
@@ -271,28 +271,28 @@ class BiomeTemplate internal constructor() {
         }
 
         @BiomeTemplateDslMarker
-        class Carvers internal constructor(private var settings: GenerationSettings, private var step: GenerationStep.Carver) {
+        inner class Carvers internal constructor(private var step: GenerationStep.Carver) {
             init {
-                settings.carvers.putIfAbsent(step, ArrayList())
+                this@GenerationSettings.carvers.putIfAbsent(step, ArrayList())
             }
 
             operator fun ConfiguredCarver<*>.unaryPlus() {
-                settings.carvers[step]?.add(this)
+                this@GenerationSettings.carvers[step]?.add(this)
             }
         }
 
         @BiomeTemplateDslMarker
-        class Features internal constructor(private var settings: GenerationSettings, private var step: GenerationStep.Feature) {
+        inner class Features internal constructor(private var step: GenerationStep.Feature) {
             init {
-                settings.features.putIfAbsent(step, ArrayList())
+                this@GenerationSettings.features.putIfAbsent(step, ArrayList())
             }
 
             operator fun ConfiguredFeature<*, *>.unaryPlus() {
-                settings.features[step]?.add(this)
+                this@GenerationSettings.features[step]?.add(this)
             }
         }
 
-        class VanillaGeneration internal constructor() {
+        inner class VanillaGeneration internal constructor() {
             internal val builderModifiers: MutableList<Consumer<MCGenerationSettings.Builder>> = ArrayList()
 
             internal fun apply(builder: MCGenerationSettings.Builder) {
