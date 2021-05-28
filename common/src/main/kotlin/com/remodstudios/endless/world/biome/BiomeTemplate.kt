@@ -158,7 +158,8 @@ class BiomeTemplate internal constructor() {
             internal val builderModifiers: MutableList<Consumer<MCSpawnSettings.Builder>> = ArrayList()
 
             internal fun apply(builder: MCSpawnSettings.Builder) {
-                builderModifiers.forEach { it.accept(builder) }
+                for (it in builderModifiers)
+                    it.accept(builder)
             }
 
             // region Vanilla spawn additions
@@ -216,11 +217,11 @@ class BiomeTemplate internal constructor() {
         internal fun copy(): SpawnSettings {
             val copy = SpawnSettings()
             copy.vanilla.builderModifiers += vanilla.builderModifiers
-            spawners.forEach {
-                copy.spawners[it.key]?.addAll(it.value)
+            for ((key, value) in spawners) {
+                copy.spawners[key]?.addAll(value)
             }
-            spawnCosts.forEach {
-                copy.spawnCosts[it.key] = it.value.copy()
+            for ((key, value) in spawnCosts) {
+                copy.spawnCosts[key] = value.copy()
             }
             copy.creatureSpawnProbability = creatureSpawnProbability
             copy.playerSpawnFriendly = playerSpawnFriendly
@@ -229,20 +230,15 @@ class BiomeTemplate internal constructor() {
         
         internal fun build(): MCSpawnSettings {
             val spawnBuilder = MCSpawnSettings.Builder()
-            spawners.forEach { entry ->
-                entry.value.forEach {
-                    spawnBuilder.spawn(entry.key, it)
-                }
+            for ((key, value) in spawners) {
+                for (it in value)
+                    spawnBuilder.spawn(key, it)
             }
-            spawnCosts.forEach {
-                spawnBuilder.spawnCost(it.key, it.value.mass, it.value.gravityLimit)
-            }
+            for ((key, value) in spawnCosts)
+                spawnBuilder.spawnCost(key, value.mass, value.gravityLimit)
             spawnBuilder.creatureSpawnProbability(creatureSpawnProbability)
             if (playerSpawnFriendly)
                 spawnBuilder.playerSpawnFriendly()
-            vanilla.builderModifiers.forEach {
-                it.accept(spawnBuilder)
-            }
             vanilla.apply(spawnBuilder)
             return spawnBuilder.build()
         }
@@ -300,7 +296,8 @@ class BiomeTemplate internal constructor() {
             internal val builderModifiers: MutableList<Consumer<MCGenerationSettings.Builder>> = ArrayList()
 
             internal fun apply(builder: MCGenerationSettings.Builder) {
-                builderModifiers.forEach { it.accept(builder) }
+                for (it in builderModifiers)
+                    it.accept(builder)
             }
 
             // region Vanilla generation additions
@@ -583,12 +580,10 @@ class BiomeTemplate internal constructor() {
             val copy = GenerationSettings()
             copy.vanilla.builderModifiers += vanilla.builderModifiers
             copy.surfaceBuilder = surfaceBuilder
-            carvers.forEach {
-                copy.carvers[it.key] = it.value.toMutableList()
-            }
-            features.forEach {
-                copy.features[it.key] = it.value.toMutableList()
-            }
+            for ((key, value) in carvers)
+                copy.carvers[key] = value.toMutableList()
+            for ((key, value) in features)
+                copy.features[key] = value.toMutableList()
             copy.structureFeatures += structureFeatures
             return copy
         }
@@ -596,17 +591,16 @@ class BiomeTemplate internal constructor() {
         internal fun build(): MCGenerationSettings {
             val genBuilder = MCGenerationSettings.Builder()
             genBuilder.surfaceBuilder(surfaceBuilder!!)
-            features.forEach { entry ->
-                entry.value.forEach {
-                    genBuilder.feature(entry.key, it)
-                }
+            for ((key, value) in features) {
+                for (it in value)
+                    genBuilder.feature(key, it)
             }
-            carvers.forEach { entry ->
-                entry.value.forEach {
-                    genBuilder.carver(entry.key, it)
-                }
+            for ((key, value)  in carvers) {
+                for (it in value)
+                    genBuilder.carver(key, it)
             }
-            structureFeatures.forEach(genBuilder::structureFeature)
+            for (it in structureFeatures)
+                genBuilder.structureFeature(it)
             vanilla.apply(genBuilder)
             return genBuilder.build()
         }
