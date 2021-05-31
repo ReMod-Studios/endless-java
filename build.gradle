@@ -17,8 +17,6 @@ subprojects {
         //mappings loom.officialMojangMappings()
         // The following line declares the yarn mappings you may select this one as well.
         mappings "net.fabricmc:yarn:${rootProject.yarn_version}"
-
-        modImplementation "io.github.remod-studios:remod-core:${rootProject.remod_core_version}"
     }
 }
 
