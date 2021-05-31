@@ -1,8 +1,8 @@
 package com.remodstudios.endless
 
-import com.remodstudios.endless.blocks.BlockRegistry
-import com.remodstudios.endless.items.ItemRegistry
-import com.remodstudios.endless.world.WorldRegistries
+import com.remodstudios.endless.blocks.EndlessBlocks
+import com.remodstudios.endless.items.EndlessItems
+import com.remodstudios.endless.world.EndlessWorld
 import me.shedaniel.architectury.registry.DeferredRegister
 import net.minecraft.entity.damage.DamageSource
 import net.minecraft.util.Identifier
@@ -17,17 +17,16 @@ object Endless {
 
     fun init() {
         printHelloWorld()
-        BlockRegistry.register()
-        ItemRegistry.register()
-        WorldRegistries.register()
-        //ParticleTypeRegistry.register()   // TODO figure out how to particle in Architectury
+        EndlessBlocks.register()
+        EndlessItems.register()
+        EndlessWorld.register()
+        //EndlessParticleTypes.register()   // TODO figure out how to particle in Architectury
     }
 
     fun id(path: String): Identifier {
         return Identifier(MOD_ID, path)
     }
 
-    fun <T> registry(key: RegistryKey<Registry<T>>): DeferredRegister<T> {
-        return DeferredRegister.create(MOD_ID, key)
-    }
+    fun <T> registry(key: RegistryKey<Registry<T>>)
+            = DeferredRegister.create(MOD_ID, key)
 }

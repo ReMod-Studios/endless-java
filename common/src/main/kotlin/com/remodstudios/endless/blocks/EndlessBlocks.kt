@@ -1,0 +1,39 @@
+package com.remodstudios.endless.blocks
+
+import com.remodstudios.endless.Endless
+import com.remodstudios.remodcore.registry.BlockRegistryHelper
+import me.shedaniel.architectury.registry.BlockProperties
+import me.shedaniel.architectury.registry.RegistrySupplier
+import net.minecraft.block.AbstractBlock.Settings
+import net.minecraft.block.Block
+import net.minecraft.block.Blocks
+import net.minecraft.block.Material
+import net.minecraft.block.MaterialColor
+import net.minecraft.sound.BlockSoundGroup
+import net.minecraft.util.registry.Registry.BLOCK_KEY
+import java.util.function.Supplier
+
+object EndlessBlocks : BlockRegistryHelper(Endless.MOD_ID) {
+    @JvmField
+    val COBALT_ORE = addCopy("cobalt_ore", Blocks.END_STONE)
+    @JvmField
+    val COBALT_BLOCK = addCopyWithInit("cobalt_block", Blocks.IRON_BLOCK) { sounds(BlockSoundGroup.STONE) }
+    @JvmField
+    val STATIC_CHARGE = addOfProp("static_charge", BlockProperties.of(Material.PLANT, MaterialColor.YELLOW)) {
+        StaticChargeBlock(sounds(BlockSoundGroup.WOOL).nonOpaque())
+    }
+    @JvmField
+    val COBALT_REPEL = addOfProp("cobalt_repel", BlockProperties.of(Material.GLASS, MaterialColor.BLUE)) {
+        CobaltRepelBlock(nonOpaque())
+    }
+    @JvmField
+    val THERAKIUM_ORE = addCopy("therakium_ore", Blocks.END_STONE)
+    @JvmField
+    val THERAKIUM_BLOCK = addCopyWithInit("therakium_block", Blocks.IRON_BLOCK) { Block(sounds(BlockSoundGroup.STONE)) }
+    @JvmField
+    val RHYOLITE = addCopy("rhyolite", Blocks.GRANITE)
+    @JvmField
+    val POLISHED_RHYOLITE = addCopy("polished_rhyolite", Blocks.POLISHED_GRANITE)
+    @JvmField
+    val LUNARIC_END_STONE = addCopy("lunaric_end_stone", Blocks.END_STONE)
+}

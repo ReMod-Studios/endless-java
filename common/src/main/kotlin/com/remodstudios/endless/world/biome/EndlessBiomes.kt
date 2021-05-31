@@ -1,17 +1,15 @@
 package com.remodstudios.endless.world.biome
 
-import com.remodstudios.endless.Endless.id
-import com.remodstudios.endless.mixin.BuiltinBiomesAccessor
+import com.remodstudios.endless.Endless
+import com.remodstudios.remodcore.biome.BiomeTemplate
+import com.remodstudios.remodcore.registry.BiomeRegistryHelper
 import net.minecraft.sound.BiomeMoodSound
-import net.minecraft.util.registry.BuiltinRegistries
-import net.minecraft.util.registry.Registry
-import net.minecraft.util.registry.RegistryKey
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.feature.ConfiguredFeatures
 import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilders
 
-object BiomeRegistry {
+object EndlessBiomes : BiomeRegistryHelper(Endless.MOD_ID) {
     private val END_TEMPLATE = BiomeTemplate.create {
         category = Biome.Category.THEEND
         precipitation = Biome.Precipitation.NONE
@@ -37,22 +35,10 @@ object BiomeRegistry {
         }
     }
 
-    private fun register(path: String, biome: Biome): Biome {
-        val key = RegistryKey.of(Registry.BIOME_KEY, id(path))
-        BuiltinRegistries.add(BuiltinRegistries.BIOME, key.value, biome)
-        val rawId = BuiltinRegistries.BIOME.getRawId(biome)
-        BuiltinBiomesAccessor.getIdMap()[rawId] = key
-        return biome
-    }
-
     @JvmField
-    val TEST_BIOME = register("test_biome", END_TEMPLATE.build {
+    val TEST_BIOME = add("test_biome", END_TEMPLATE.build {
         effects {
             fogColor = 0x123456
         }
     })
-
-    fun register() {
-        /* clinit */
-    }
 }

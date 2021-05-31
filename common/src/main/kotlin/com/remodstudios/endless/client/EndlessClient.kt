@@ -1,12 +1,12 @@
 package com.remodstudios.endless.client
 
-import com.remodstudios.endless.blocks.BlockRegistry
+import com.remodstudios.endless.blocks.EndlessBlocks
 import me.shedaniel.architectury.registry.RenderTypes
 import net.minecraft.client.render.RenderLayer
 
 object EndlessClient {
     fun init() {
         RenderTypes.register(RenderLayer.getCutout(),
-            BlockRegistry.STATIC_CHARGE.get(), BlockRegistry.COBALT_REPEL.get())
+            EndlessBlocks.STATIC_CHARGE, EndlessBlocks.COBALT_REPEL)
     }
 }

@@ -1,6 +1,6 @@
 package com.remodstudios.endless.items
 
-import com.remodstudios.endless.blocks.BlockRegistry
+import com.remodstudios.endless.blocks.EndlessBlocks
 import com.remodstudios.endless.blocks.StaticChargeBlock
 import net.minecraft.advancement.criterion.Criteria
 import net.minecraft.item.Item
@@ -30,7 +30,7 @@ class CobaltLighterItem(settings: Settings?) : Item(settings) {
                 1.0f,
                 RANDOM.nextFloat() * 0.4f + 0.8f
             )
-            world.setBlockState(shockPos, BlockRegistry.STATIC_CHARGE.get().defaultState, 3)
+            world.setBlockState(shockPos, EndlessBlocks.STATIC_CHARGE.defaultState, 3)
             if (player is ServerPlayerEntity) {
                 Criteria.PLACED_BLOCK.trigger(player as ServerPlayerEntity?, shockPos, ctx.stack)
                 ctx.stack.damage(1, player) { playerx -> playerx.sendToolBreakStatus(ctx.hand) }
