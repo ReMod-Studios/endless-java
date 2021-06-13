@@ -40,10 +40,10 @@ dependencies {
     }
 
     // mod dependencies
-    modImplementation("io.github.remod-studios:remod-core:${rootProject.remod_core_version}") {
+    modImplementation "software.bernie.geckolib:geckolib-forge-${rootProject.minecraft_version}:${rootProject.geckolib_version}"
+    modRuntime("io.github.remod-studios:remod-core:${rootProject.remod_core_version}") {
         transitive = false
     }
-    modImplementation "software.bernie.geckolib:geckolib-forge-${rootProject.minecraft_version}:${rootProject.geckolib_version}"
 }
 
 processResources {
