@@ -31,7 +31,6 @@
     ],
     "creature": [],
     "ambient": [],
-    "underground_water_creature": [],
     "water_creature": [],
     "water_ambient": [],
     "misc": []
@@ -39,6 +38,15 @@
   "spawn_costs": {},
   "carvers": {},
   "features": [
-    "minecraft:end_spike"
+    [],
+    [],
+    [],
+    [],
+    [ "minecraft:end_spike" ],
+    [],
+    [],
+    [],
+    [],
+    []
   ]
 }
