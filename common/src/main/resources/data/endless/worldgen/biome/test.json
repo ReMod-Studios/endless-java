@@ -9,7 +9,7 @@
   "player_spawn_friendly": false,
   "effects": {
     "sky_color": 0,
-    "fog_color": 10518688,
+    "fog_color": 1193046,
     "water_color": 4159204,
     "water_fog_color": 329011,
     "mood_sound": {
@@ -38,5 +38,7 @@
   },
   "spawn_costs": {},
   "carvers": {},
-  "features": []
+  "features": [
+    "minecraft:end_spike"
+  ]
 }
