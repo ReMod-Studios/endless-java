@@ -13,7 +13,8 @@ dependencies {
 
     // mod dependencies
     implementation "software.bernie.geckolib:geckolib-core:${rootProject.geckolib_core_version}"
-    modImplementation("io.github.remod-studios:remod-core:${rootProject.remod_core_version}") {
+    // (just to have it available in common)
+    modCompileOnly("io.github.remod-studios:remod-core-fabric:${rootProject.remod_core_version}") {
         transitive = false
     }
 }

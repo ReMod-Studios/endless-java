@@ -1,8 +1,8 @@
 package com.remodstudios.endless.world.biome
 
 import com.remodstudios.endless.Endless
-import com.remodstudios.remodcore.biome.BiomeTemplate
-import com.remodstudios.remodcore.registry.BiomeRegistryHelper
+import io.github.remodstudios.remodcore.biome.BiomeTemplate
+import io.github.remodstudios.remodcore.registry.BiomeRegistryHelper
 import net.minecraft.sound.BiomeMoodSound
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.gen.GenerationStep

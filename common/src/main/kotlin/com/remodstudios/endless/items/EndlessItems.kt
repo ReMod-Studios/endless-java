@@ -3,7 +3,7 @@ package com.remodstudios.endless.items
 import com.remodstudios.endless.Endless
 import com.remodstudios.endless.Endless.id
 import com.remodstudios.endless.blocks.EndlessBlocks
-import com.remodstudios.remodcore.registry.ItemRegistryHelper
+import io.github.remodstudios.remodcore.registry.ItemRegistryHelper
 import me.shedaniel.architectury.registry.CreativeTabs
 import net.minecraft.item.Item
 import net.minecraft.item.ItemGroup

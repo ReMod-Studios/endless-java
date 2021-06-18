@@ -1,7 +1,7 @@
 package com.remodstudios.endless.particle
 
 import com.remodstudios.endless.Endless
-import com.remodstudios.remodcore.registry.RegistryHelper
+import io.github.remodstudios.remodcore.registry.RegistryHelper
 import net.minecraft.particle.ParticleEffect
 import net.minecraft.particle.ParticleType
 import net.minecraft.util.registry.Registry

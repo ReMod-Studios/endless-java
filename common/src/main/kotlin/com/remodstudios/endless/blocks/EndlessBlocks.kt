@@ -1,7 +1,7 @@
 package com.remodstudios.endless.blocks
 
 import com.remodstudios.endless.Endless
-import com.remodstudios.remodcore.registry.BlockRegistryHelper
+import io.github.remodstudios.remodcore.registry.BlockRegistryHelper
 import me.shedaniel.architectury.registry.BlockProperties
 import me.shedaniel.architectury.registry.RegistrySupplier
 import net.minecraft.block.AbstractBlock.Settings

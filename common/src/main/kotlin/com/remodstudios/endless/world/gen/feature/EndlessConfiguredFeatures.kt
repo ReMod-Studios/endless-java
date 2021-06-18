@@ -2,7 +2,7 @@ package com.remodstudios.endless.world.gen.feature
 
 import com.remodstudios.endless.Endless
 import com.remodstudios.endless.blocks.EndlessBlocks
-import com.remodstudios.remodcore.registry.RegistryHelper
+import io.github.remodstudios.remodcore.registry.RegistryHelper
 import me.shedaniel.architectury.registry.BiomeModifications
 import net.minecraft.block.Blocks
 import net.minecraft.util.registry.BuiltinRegistries

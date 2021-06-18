@@ -36,7 +36,7 @@ dependencies {
 
     // mod dependencies
     modImplementation "software.bernie.geckolib:geckolib-fabric-${rootProject.minecraft_version}:${rootProject.geckolib_version}:dev"
-    modRuntime("io.github.remod-studios:remod-core:${rootProject.remod_core_version}") {
+    modRuntime("io.github.remod-studios:remod-core-fabric:${rootProject.remod_core_version}") {
         transitive = false
     }
 }
