@@ -41,7 +41,7 @@ dependencies {
 
     // mod dependencies
     modImplementation "software.bernie.geckolib:geckolib-forge-${rootProject.minecraft_version}:${rootProject.geckolib_version}"
-    modRuntime("io.github.remod-studios:remod-core-forge:${rootProject.remod_core_version}") {
+    modRuntime("io.github.remod-studios:remod-core-forge:${rootProject.remod_core_version}@jar") {
         transitive = false
     }
 }

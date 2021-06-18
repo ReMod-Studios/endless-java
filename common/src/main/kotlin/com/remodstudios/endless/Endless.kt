@@ -19,7 +19,7 @@ object Endless {
         printHelloWorld()
         EndlessBlocks.register()
         EndlessItems.register()
-        EndlessWorld.register()
+        //EndlessWorld.register()           // FIXME UGH, NPE because registry is not available, fix this -ADCLeo
         //EndlessParticleTypes.register()   // TODO figure out how to particle in Architectury
     }
 
