@@ -2,26 +2,21 @@ package io.github.remodstudios.endless.world.gen.feature
 
 import io.github.remodstudios.endless.Endless
 import io.github.remodstudios.endless.blocks.EndlessBlocks
-import io.github.remodstudios.remodcore.registry.RegistryHelper
+import io.github.remodstudios.remodcore.registry.ConfiguredFeatureRegistryHelper
 import me.shedaniel.architectury.registry.BiomeModifications
 import net.minecraft.block.Blocks
 import net.minecraft.util.registry.BuiltinRegistries
-import net.minecraft.util.registry.Registry
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.gen.GenerationStep
 import net.minecraft.world.gen.UniformIntDistribution
-import net.minecraft.world.gen.feature.ConfiguredFeature
 import net.minecraft.world.gen.feature.ConfiguredFeatures
 import net.minecraft.world.gen.feature.DiskFeatureConfig
 import net.minecraft.world.gen.feature.Feature
 import java.util.Collections.singletonList
 
-object EndlessConfiguredFeatures : RegistryHelper<ConfiguredFeature<*, *>>(Endless.registry(Registry.CONFIGURED_FEATURE_WORLDGEN)) {
+object EndlessConfiguredFeatures : ConfiguredFeatureRegistryHelper(Endless.MOD_ID) {
     private val END_STONE_LIST = singletonList(Blocks.END_STONE.defaultState)
     private val HEIGHTMAP_SURFACE_SQUARE = ConfiguredFeatures.Decorators.HEIGHTMAP_WORLD_SURFACE.spreadHorizontally()
-
-    private fun add(id: String, feature: ConfiguredFeature<*, *>)
-            = feature.also { registry.register(id) { feature } }
 
     private val COBALT_ORE = add("cobalt_ore",
         Feature.DISK.configure(

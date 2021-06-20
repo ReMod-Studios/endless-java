@@ -2,6 +2,7 @@ package io.github.remodstudios.endless
 
 import io.github.remodstudios.endless.blocks.EndlessBlocks
 import io.github.remodstudios.endless.items.EndlessItems
+import io.github.remodstudios.endless.world.EndlessWorld
 import me.shedaniel.architectury.registry.DeferredRegister
 import net.minecraft.entity.damage.DamageSource
 import net.minecraft.util.Identifier
@@ -18,7 +19,7 @@ object Endless {
         printHelloWorld()
         EndlessBlocks.register()
         EndlessItems.register()
-        //EndlessWorld.register()           // FIXME UGH, NPE because registry is not available, fix this -ADCLeo
+        EndlessWorld.register()
         //EndlessParticleTypes.register()   // TODO figure out how to particle in Architectury
     }
 
