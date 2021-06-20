@@ -13,11 +13,11 @@
   "entrypoints": {
     "main": [{
       "adapter": "kotlin",
-      "value": "com.remodstudios.endless.fabric.EndlessFabric"
+      "value": "io.github.remodstudios.endless.fabric.EndlessFabric"
     }],
     "client": [{
       "adapter": "kotlin",
-      "value": "com.remodstudios.endless.fabric.EndlessFabricClient"
+      "value": "io.github.remodstudios.endless.fabric.EndlessFabricClient"
     }]
   },
   "mixins": [

@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.remodstudios.endless.mixin",
+  "package": "io.github.remodstudios.endless.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
   ],
